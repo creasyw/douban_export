@@ -15,6 +15,12 @@ def get_books (name):
         print "Check it back later, dud..."
         return 0
     print_name(r.text)
+    address = re.findall("rel=\"next\" href=\"(.*?)\"", r.text)
+    while address!=[]:
+        r = requests.get(address[0])
+        print_name(r.text)
+        address = re.findall("rel=\"next\" href=\"(.*?)\"", r.text)
+
 
 
 def main ():
