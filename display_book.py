@@ -6,10 +6,10 @@ def print_name (text):
     for i in finder.findall(text):
         print i
 
-def get_books (name):
-    prefix = "http://book.douban.com/people/"
-    suffix = "/collect"
-    r = requests.get(prefix+name+suffix)
+def get_books (name, para):
+    print "\n\nPrinting the %s\'s %s list\n"%(name, para)
+    address ="http://"+para+".douban.com/people/"+name+"/collect"
+    r = requests.get(address)
     if r.status_code != 200:
         print "Sorry... there is something wrong with the website."
         print "Check it back later, dud..."
@@ -24,7 +24,9 @@ def get_books (name):
 
 
 def main ():
-    get_books("creasywq")
+    get_books("creasywq", "book")
+    get_books("creasywq", "movie")
+    get_books("creasywq", "music")
 
 
 if __name__=="__main__":
